@@ -1,0 +1,24 @@
+1. (zrobione) Wczytywanie z pliku// mo¿na jeszcze popatrzeæ jakie zmiennie mo¿na wczytywaæ z pliku 
+1a.(zrobione) Skalowanie
+2. (zrobione) Okinko pomoc
+3. (zrobione) Obs³uga wydarzeñ po wyl¹dowaniu/skuciu
+4. (zrobione) Lot rakiety ¿eby by³ p³ynny // brakuje p³ynnych ruchów na boki
+5. (zrobione) Kolejne lvle
+6. (zrobione) Asteroidy
+7. (zrobione) Wprowadzanie nicku zawodnika
+8. (zrobione) Ranking+ okienko rankingu
+9. (zrobione) PAUZA w grze
+10.(zrobione) Punktacja //mo¿e na postawie paliwo które zosta³o?
+11.(zrobione) Paliwo
+12.(zrobione) Trzeba ustaliæ poziom y l¹dowiska bo asteroidy psuj¹ akcje
+13.(zrobione) Wiêksza mo¿liwa prêkoœæ opadania, rozwalenie siê statku ze zbyt du¿¹ prêdkoœci¹
+14.(zrobione) P³ynne ruchy na boki
+
+Poszukaliœmy informacji i dokonaliœmy zmian w obrêbie tematów budz¹cych Pañskie w¹tpliwoœci:
+-„czy ka¿dym pliku PNG jest u¿ywany kana³ alfa (przezroczystoœæ)”- tak, ka¿dy plik png obs³uguje kana³ alfa
+-„Nie jestem pewien czy w BufferedImage zwracanym przez ImageIO.read() u¿ywany jest model koloru z kana³em alfa”- BufferedImage mo¿e u¿ywaæ za równo kolorów z jak i bez kana³u alfa, klasa ta potrafi rozró¿niæ jaki typ obrazu aktualnie obs³uguje. Mo¿na równie¿ sprawdziæ samemu, czy nasz obraz ma kana³ alfa, tutaj link do kodu pokazuj¹cego jak to zrobiæ
+https://memorynotfound.com/java-image-transparency-detection-bufferedimage/
+-Zgodnie z zaleceniami zmieniliœmy wykrywanie koloru planety na wykrywanie zmiany koloru t³a, aby zapobiec b³êdom podczas skalowania mapy
+-Sta³¹, któr¹ trudno odczytaæ w systemie decymalnym zamieniliœmy na liczbê szestnastkow¹, znacznie bardziej czyteln¹. Dodatkowo umieœciliœmy j¹ w pliku konfiguracyjnym i wczytujemy j¹ do programu
+
+Wydaje mi siê, ¿e przeoczy³ Pan zmianê funkcji colider_color, gdy oddawaliœmy etap 3 funkcja sprawdza³a czy obiekt znajduje siê na tle (background_color), tak jak Pan to sugerowa³. Wczytujemy do programu równie¿ kolor planety (planet_color), lecz nie korzystamy potem z tej wartoœci. Jednak¿e zmieni³em teraz funkcjê colider_color tak aby najpierw sprawdza³a czy wyst¹pi³y zmiany w kolorze odczytywanych pixeli, a wiêc wykrywamy krawêdŸ, a dopiero potem sprawdzamy czy obiekt znajduje siê na tle, je¿eli nie dochodzi do kolizji- wybuchu. Mam nadzieje, ¿e takie rozwi¹zanie jest odpowiednie.
