@@ -1,1 +1,1 @@
-proze20l_kitka_sowa\SpaceCaptain\src\core
+SpaceCaptain\src\core
